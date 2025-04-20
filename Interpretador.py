@@ -1,6 +1,15 @@
 import re
 import gradio as gr
 from sympy import symbols, sympify, SympifyError, sin, cos, tan, log, sqrt, exp
+from transformers import pipeline
+import torch
+
+# Inicializa modelo BART para correção básica
+try:
+    grammar_corrector = pipeline("text-classification", model="facebook/bart-large-mnli")
+except Exception as e:
+    grammar_corrector = None
+    print(f"Erro ao carregar modelo BART: {e}")
 
 x = symbols('x')
 
@@ -31,8 +40,16 @@ def tratar_numeros_compostos(texto):
                 texto = texto.replace(composto, str(valor))
     return texto
 
+def corrigir_entrada(texto):
+    if grammar_corrector:
+        # Aqui o modelo apenas retorna classificação sem modificar a frase
+        # Implementações mais robustas exigiriam um modelo text2text como T5.
+        return texto  # Placeholder, pois bart-large-mnli não corrige texto diretamente
+    return texto
+
 def converter_para_expressao(texto):
     texto = texto.lower()
+    texto = corrigir_entrada(texto)
     texto = tratar_numeros_compostos(texto)
 
     for palavra, numero in palavras_para_numeros.items():
@@ -58,7 +75,7 @@ def interpretar_expressao(texto):
 with gr.Blocks(css=".gr-button-primary {background: #10b981 !important;}") as interface:
     gr.Markdown(
         """
-        # 🧠 Interpretador de Expressões
+        # 🧠 Interpretador de Expressões com IA
 
         Digite uma expressão como:
         - sete mais dois vezes três
