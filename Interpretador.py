@@ -44,7 +44,7 @@ funcoes_matematicas = {
     "log de": "log", "raiz de": "sqrt", "exponencial de": "exp", 
     "seno hiperbólico de": "sinh", "cosseno hiperbólico de": "cosh", "tangente hiperbólica de": "tanh"
 }
-
+#
 def texto_para_numero(texto):
     palavras = texto.split()
     total = 0
