@@ -1,0 +1,75 @@
+Dependências do Projeto: Interpretador de Expressões Matemáticas com IA
+
+Dependências
+1. Gradio
+Descrição: Gradio é uma biblioteca que permite criar interfaces de usuário interativas de forma simples e rápida. No projeto, ela é utilizada para criar a interface onde o usuário pode inserir expressões matemáticas e obter os resultados.
+
+Versão: gradio==3.19.0
+
+Instalação:
+
+pip install gradio
+2. SymPy
+Descrição: SymPy é uma biblioteca Python para manipulação de álgebra simbólica. Ela é utilizada para interpretar e calcular expressões matemáticas simbólicas, como soma, multiplicação, exponenciação, etc.
+
+Versão: sympy==1.11.1
+
+Instalação:
+
+pip install sympy
+3. Transformers
+Descrição: Transformers é uma biblioteca da Hugging Face para usar modelos de aprendizado profundo, incluindo modelos de linguagem natural. Neste projeto, é utilizada para carregar o modelo de correção gramatical t5-small, que é usado para corrigir erros comuns na entrada do usuário.
+
+Versão: transformers==4.27.1
+
+Instalação:
+
+pip install transformers
+4. Torch
+Descrição: Torch é uma biblioteca fundamental para deep learning, utilizada pela biblioteca transformers para executar modelos de NLP. A versão correta do Torch precisa ser instalada para garantir que os modelos pré-treinados funcionem adequadamente.
+
+Versão: torch==2.1.0
+
+Instalação:
+
+pip install torch
+5. Regex (re)
+Descrição: A biblioteca re (expressões regulares) é uma biblioteca padrão do Python que permite fazer manipulação de strings com base em padrões. Ela é utilizada para tratar e converter expressões matemáticas em linguagem natural.
+
+Versão: Já inclusa na instalação padrão do Python.
+
+Instalação: Não é necessário instalar, pois é uma biblioteca padrão do Python.
+
+6. Pandas (opcional para operações com dados)
+Descrição: Pandas é uma biblioteca para análise e manipulação de dados. Embora não seja uma dependência essencial para a execução do interpretador, pode ser utilizada em casos de extensão do projeto, como armazenamento e manipulação de dados de entrada ou saída.
+
+Versão: pandas==1.5.3
+
+Instalação:
+
+pip install pandas
+Instalação e Configuração do Ambiente
+Para configurar o ambiente e instalar todas as dependências necessárias, siga os seguintes passos:
+
+Criar e ativar um ambiente virtual:
+
+python -m venv venv
+source venv/bin/activate  # Para Linux/Mac
+venv\Scripts\activate     # Para Windows
+Instalar as dependências: Uma vez que o ambiente virtual esteja ativado, você pode instalar todas as dependências necessárias executando:
+
+pip install gradio sympy transformers torch pandas
+Configuração do Modelo de Correção Gramatical
+Este projeto utiliza o modelo t5-small para correção gramatical. O modelo é carregado através da biblioteca transformers. A função de correção gramatical será executada utilizando a API do modelo:
+
+python
+Copiar
+Editar
+from transformers import pipeline
+grammar_corrector = pipeline("text2text-generation", model="t5-small", tokenizer="t5-small")
+Caso o modelo não esteja disponível, o projeto ainda pode operar com a correção manual definida no código.
+
+Considerações Finais
+Todas as dependências listadas são essenciais para a execução correta do projeto. Certifique-se de que todas estão instaladas e configuradas corretamente para garantir que o interpretador funcione como esperado.
+
+Este documento fornece um resumo das bibliotecas e ferramentas necessárias para o correto funcionamento do interpretador de expressões matemáticas.
