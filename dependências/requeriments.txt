@@ -50,26 +50,3 @@ Instalação:
 pip install pandas
 Instalação e Configuração do Ambiente
 Para configurar o ambiente e instalar todas as dependências necessárias, siga os seguintes passos:
-
-Criar e ativar um ambiente virtual:
-
-python -m venv venv
-source venv/bin/activate  # Para Linux/Mac
-venv\Scripts\activate     # Para Windows
-Instalar as dependências: Uma vez que o ambiente virtual esteja ativado, você pode instalar todas as dependências necessárias executando:
-
-pip install gradio sympy transformers torch pandas
-Configuração do Modelo de Correção Gramatical
-Este projeto utiliza o modelo t5-small para correção gramatical. O modelo é carregado através da biblioteca transformers. A função de correção gramatical será executada utilizando a API do modelo:
-
-python
-Copiar
-Editar
-from transformers import pipeline
-grammar_corrector = pipeline("text2text-generation", model="t5-small", tokenizer="t5-small")
-Caso o modelo não esteja disponível, o projeto ainda pode operar com a correção manual definida no código.
-
-Considerações Finais
-Todas as dependências listadas são essenciais para a execução correta do projeto. Certifique-se de que todas estão instaladas e configuradas corretamente para garantir que o interpretador funcione como esperado.
-
-Este documento fornece um resumo das bibliotecas e ferramentas necessárias para o correto funcionamento do interpretador de expressões matemáticas.
